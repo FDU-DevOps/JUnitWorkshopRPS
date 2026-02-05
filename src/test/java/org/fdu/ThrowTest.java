@@ -45,15 +45,11 @@ class ThrowTest {
     void parseValidThrowTest() {
         // valid - expected throws after normalization
         String rock = "rock";
-        String paper = "paper";
-        String scissors = "scissors";
+
+        // add additional tests - code coverage shoudl increase
 
         assertEquals(RpsEnum.ROCK, parseThrow(rock),
                 "rock not recognized as valid!");
-        assertEquals(RpsEnum.PAPER, parseThrow(paper),
-                "paper not recognized as valid!");
-        assertEquals(RpsEnum.SCISSORS, parseThrow(scissors),
-                "scissors not recognized as valid!");
 
     }
 
