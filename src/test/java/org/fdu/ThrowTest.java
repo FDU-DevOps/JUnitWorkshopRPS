@@ -70,14 +70,32 @@ class ThrowTest {
     }
 
     @Test
-    @DisplayName("Verify we get a variety of random values and all are valid - to be filled in")
+    @DisplayName("Verify we get a variety of random values and all are valid")
     void getRandomThrowTest() {
         int rock = 0;
         int paper = 0;
         int scissors = 0;
         for (int itr = 0; itr < 10; itr++) {
             // get a random throw and match to rock, paper or scissors
+            //   for demo - consider adding spock - two test cases should fail
+            switch (getRandomThrow()) {
+                case RpsEnum.ROCK:
+                    rock++;
+                    continue;
+                case RpsEnum.PAPER:
+                    paper++;
+                    continue;
+                case RpsEnum.SCISSORS:
+                    scissors++;
+                    continue;
+                default:
+                    fail("getRandomThrow() returned an invalid value");
+            }
         }
-        // assert what?
+        // boolean = false if any of the values is zero
+        System.out.println("rock " + rock + "  paper " + paper + " scissors " + scissors);
+        boolean allNonZero = (rock != 0 ) && (paper != 0 ) && (scissors != 0);
+        assertTrue (allNonZero, "not all values returned");
+
     }
 }
