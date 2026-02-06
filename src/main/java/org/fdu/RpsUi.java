@@ -28,7 +28,7 @@ public class RpsUi {
      * Purpose: support creation of a simple test class and case for JUnit workshop
      * @param message - String to be echoed back to the sender
      */
-    String echo(String message) {
+    public static String echo(String message) {
         return (message);
     }
 }
