@@ -27,23 +27,24 @@ public class RpsEvaluation {
         if (playerThrow == npcThrow) {
             return GameOutcomeEnum.TIE;
         }
+        // refactored to group by player win vs. npc win
+        // since ties checked above, if player doesn't win on a throw, break drops down to return NPC won
         switch (playerThrow) {
             case ROCK:
-                switch (npcThrow) {
-                    case SCISSORS: return GameOutcomeEnum.PLAYER_WINS;
-                    case PAPER: return GameOutcomeEnum.NPC_WINS;
-                }
+                if (npcThrow == Throw.RpsEnum.SCISSORS) // rock dulls scissors
+                    return GameOutcomeEnum.PLAYER_WINS;
+                break;
             case SCISSORS:
-                switch (npcThrow) {
-                    case ROCK: return GameOutcomeEnum.NPC_WINS;
-                    case PAPER: return GameOutcomeEnum.PLAYER_WINS;
-                }
+                if (npcThrow == Throw.RpsEnum.PAPER)    // scissors cut paper
+                    return GameOutcomeEnum.PLAYER_WINS;
+                break;
             case PAPER:
-                switch (npcThrow) {
-                    case ROCK: return GameOutcomeEnum.PLAYER_WINS;
-                    case SCISSORS: return GameOutcomeEnum.NPC_WINS;
-                }
-        }
-        return null;
-    }
+                if (npcThrow == Throw.RpsEnum.ROCK)    // paper covers rock
+                    return GameOutcomeEnum.PLAYER_WINS;
+                break;
+            default:
+                return null;   // invalid enum, should never happen, should throw exception (ToDo)
+        } // end of player win scenarios, if get past here, NPC won
+        return GameOutcomeEnum.NPC_WINS;
+    }  // end evaluate throws method
 }  // end RpsEvaluation class

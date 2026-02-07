@@ -11,7 +11,7 @@ import static org.fdu.RpsEvaluation.*;
 class RpsEvaluationTest {
 
     @Test
-    @DisplayName("Verify game returns the correct winner for a throw, or a tie")
+    @DisplayName("Verify game returns the correct winner for a tie")
     void evaluateThrowsTest() {
         // evaluate returns a GameOutcomeEnum of NPC_WINS, PLAYER_WINS or TIE
        // ties - if player & npc throw are the same
