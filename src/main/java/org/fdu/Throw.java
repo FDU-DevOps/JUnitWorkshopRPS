@@ -26,6 +26,7 @@ public class Throw {
     /**
      * Cleans up player input for comparison <br>
      * Modify player input to remove leading and trailing whitespace, convert to all lowercase
+     *   Refactored to normalize input from parseThrow, ie don't need to normalize prior
      * @param playerInput raw string which player input for their throw
      * @return trimmed, lowercase string, or empty string if input is null
      */
@@ -40,10 +41,11 @@ public class Throw {
      * <p>
      * ToDo: update to enhanced Java switch avail in JDK 21 - cleaner, tighter
      *
-     * @param normalizedUserInput normalized user input without leading and trailing whitespace and all lowercase
+     * @param UserInput user input raw or normalized (ie without leading and trailing whitespace and all lowercase)
      * @return - enum representing the user's throw or INVALID
      */
-    public static RpsEnum parseThrow(String normalizedUserInput) {
+    public static RpsEnum parseThrow(String UserInput) {
+        String normalizedUserInput = normalizeThrow(UserInput);
         switch (normalizedUserInput) {
             case "rock":
                 return RpsEnum.ROCK;

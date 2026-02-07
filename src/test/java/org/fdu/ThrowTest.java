@@ -56,6 +56,28 @@ class ThrowTest {
                 "scissors not recognized as valid!");
 
     }
+    //    throw valid guesses, but raw input (non-normalized)
+    @Test
+    @DisplayName("verify rock, paper and scissors are recognized as valid")
+    void parseValidRawInputThrowTest() {
+        // valid - expected throws after normalization
+        String rock = "  RoCk  ";
+        String paper = "PAPer\t";
+        String scissors = "\tscissorS   ";
+        String rockWithBlanks = "ro ck";
+        String nullTest = null;
+
+        assertEquals(RpsEnum.ROCK, parseThrow(rock),
+                "rock not recognized as valid!");
+        assertEquals(RpsEnum.PAPER, parseThrow(paper),
+                "paper not recognized as valid!");
+        assertEquals(RpsEnum.SCISSORS, parseThrow(scissors),
+                "scissors not recognized as valid!");
+        assertEquals(RpsEnum.INVALID, parseThrow(rockWithBlanks),
+                "embedded blanks not recognized as invalid!");
+        // assertEquals(RpsEnum.INVALID, parseThrow(nullTest),
+        //              "embedded blanks not recognized as invalid!");
+    }
 
     // invalid throws
     @Test
